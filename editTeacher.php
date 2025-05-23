@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Teacher</title>
+    <link href="images/icon1.png" rel="icon">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .header .patient-info {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .header-bar {
+        background-color:#333;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        color: white;
+        font-size: 40px;
+        font-family: 'Georgia', serif;
+        font-weight: bold;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        position: sticky;
+    }
+
+    .logout {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .logout:hover {
+        background-color: #c82333;
+    }
+
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .section h2 {
+        color: #555;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    table th, table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    table th {
+        background-color: #f4f4f4;
+    }
+
+    form label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: bold;
+    }
+
+    form input[type="text"], form input[type="tel"], form input[type="password"] {
+        width: 95%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+    }
+
+    form button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    form button:hover {
+        background-color: #218838;
+    }
+
+    .error {
+        color: red;
+        font-size: 14px;
+    }
+
+    .success {
+        color: green;
+        font-size: 14px;
+    }
+
+    .footer {
+        background-color: #222;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: auto;
+        width: 100%;
+    }
+
+    .delete-button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 8px 15px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .delete-button:hover {
+        background-color: #c82333;
+    }
+
+    .edit-button {
+        background-color:#ffa726;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 8px 15px;
+        font-size: 14px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .edit-button:hover {
+        background-color:#ffa726;
+    }
+
+  
+    .section h2 {
+        color: #555;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+    }
+
+    #addTeachersForm {
+        display: flex;
+        flex-direction: column;
+        gap: 15px; 
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .input-group label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .input-group input {
+        width: 95%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+    }
+
+    .addTeacher-button {
+        padding: 12px 45px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 16px;
+        align-self: center; 
+        transition: background-color 0.3s ease;
+    }
+
+    .addTeacher-button:hover {
+        background-color: #218838;
+    }
+
+    
+    @media (max-width: 600px) {
+        #addDrugsForm {
+            padding: 10px;
+        }
+    }
+
+</style>
+</head>
+<body>
+<div class="header-bar"><a style=" text-decoration: none;  color: white;" href="adminPage.php"> Admin Dashboard &nbsp </a>
+     
+        <button class="logout" onclick="logout()">Log Out</button>
+    </div>
+
+    <div class="container">
+        <h1>صفحة لتعديل بيانات المعلم</h1>
+
+        <!-- Display Error Message -->
+        <?php if (!empty($error)): ?>
+            <p class="error"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
+
+        <!-- Display Drug Information -->
+        <?php if ($teachersData): ?>
+            <div class="section">
+                <h2>معلومات المعلم</h2>
+                <table>
+                    <tr>
+                        <th>الاسم</th>
+                        <td><?= htmlspecialchars($teachersData['name']) ?></td>
+                    </tr>
+                    <tr>
+                        <th>رقم الجوال</th>
+                        <td><?= htmlspecialchars($teachersData['Phonenumber']) ?></td>
+                    </tr>
+                    <tr>
+                        <th>المساق</th>
+                        <td><?= htmlspecialchars($teachersData['Subject']) ?></td>
+                    </tr>
+                    <tr>
+                        <th>المرحله الدراسيه</th>
+                        <td><?= htmlspecialchars($teachersData['level']) ?> Grade</td>
+                    </tr>
+                </table>
+            </div>
+
+          
+        <?php else: ?>
+            <p>No teacher information available to edit.</p>
+        <?php endif; ?>
+
+          <!-- Update teacher Name Form -->
+          <div class="section">
+                <h2>تحديث أسم المعلم</h2>
+                <form method="post" action="">
+                    <label for="name">أسم المعلم</label>
+                    <input type="text" name="name" id="name"  required>
+                    <button type="submit" name="updateName">تحديث الاسم</button>
+                </form>
+            </div>
+
+            <!-- Update teacher Phonenumber Form -->
+            <div class="section">
+                <h2>تحديث رقم الجوال المعلم</h2>
+                <form method="post" action="">
+                    <label for="Phonenumber">رقم الجوال للمعلم</label>
+                    <input type="text" name="Phonenumber" id="Phonenumber"  required>
+                    <button type="submit" name="updatePhonenumber">حدث رقم الجوال</button>
+                </form>
+            </div>
+
+             <!-- Update teacher Phonenumber Form -->
+            <div class="section">
+                <h2>تحديث المساق </h2>
+                <form method="post" action="">
+                    <label for="Subject">المساق</label>
+                    <input type="text" name="Subject" id="Subject"  required>
+                    <button type="submit" name="updateSubject">تحديث المساق</button>
+                </form>
+            </div>
+
+            <!-- Update Teacher level Form -->
+            <div class="section">
+                <h2>تحديث المرحلة الدراسيه</h2>
+                <form method="post" action="">
+                    <label for="level">المرحله الدراسيه</label>
+                    <input type="text" name="level" id="level"  required>
+                    <button type="submit" name="updatelevel"> تحديث المرحلة الدراسيه</button>
+                </form>
+            </div>
+    </div>
+
+    <script>
+        function logout() {
+            window.location.href = 'Classes/logOutManger.php';
+        }
+    </script>
+          <div class="footer">
+          &copy; كل الحقوق محفوظه لمركز الأجيال الصاعدة 2025.
+    </div>
+</body>
+</html>
