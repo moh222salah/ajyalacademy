@@ -20,6 +20,70 @@
 ---
 ```
 
+
+## 📋 Table of Contents
+
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Technology Stack](#-technology-stack)
+- [Architecture](#-architecture)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Workflow Timeline](#-workflow-timeline)
+- [Design Philosophy](#-design-philosophy)
+- [Performance Metrics](#-performance-metrics)
+- [Security](#-security)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Contact](#-contact)
+
+---
+
+## 🌟 Overview
+
+**Ajyal Academy** is a cutting-edge educational platform that seamlessly connects students, teachers, and administrators in a comprehensive learning ecosystem. Built with modern web technologies and designed with a glassmorphism aesthetic, the platform delivers an unparalleled user experience across all devices.
+
+---
+
+## 🚀 Key Features
+
+### For Students 👨‍🎓
+
+```
+✅ Smart Course Recommendations
+✅ Interactive Learning Dashboard
+✅ Real-time Progress Tracking
+✅ Live & Recorded Sessions
+✅ Peer Collaboration Tools
+✅ Digital Certificates
+✅ Mobile Learning Access
+✅ Personalized Learning Paths
+```
+
+### For Teachers 👨‍🏫
+
+```
+✅ Course Creation & Management
+✅ Student Analytics Dashboard
+✅ Live Streaming Capabilities
+✅ Assignment & Grading System
+✅ Communication Tools
+✅ Resource Library
+✅ Performance Insights
+✅ Automated Notifications
+```
+
+### For Administrators 🎯
+
+```
+✅ Comprehensive Analytics
+✅ User Management System
+✅ Revenue Tracking
+✅ Course Approval Workflow
+✅ System Monitoring
+✅ Report Generation
+✅ Access Control
+✅ Audit Logging
 ---
 
 ## 💻 Technology Stack
