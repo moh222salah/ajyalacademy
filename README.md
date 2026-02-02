@@ -7,15 +7,6 @@
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Performance](https://img.shields.io/badge/Performance-A+-brightgreen?style=for-the-badge)
 
-**Empowering Education for Future Generations**
-
-[🌐 Live Demo](#) • [📚 Documentation](#features) • [🚀 Getting Started](#installation) • [💬 Contact](https://wa.me/201113903070)
-
----
-
-### 🏆 Built with Military-Grade Precision & Human-Centric Design
-
-</div>
 
 ---
 ```
@@ -39,38 +30,10 @@
 
 ---
 
-## 🌟 Overview
-
-**Ajyal Academy** is a cutting-edge educational platform that seamlessly connects students, teachers, and administrators in a comprehensive learning ecosystem. Built with modern web technologies and designed with a glassmorphism aesthetic, the platform delivers an unparalleled user experience across all devices.
-
----
-
 ## 🚀 Key Features
 
 ### For Students 👨‍🎓
 
-```
-✅ Smart Course Recommendations
-✅ Interactive Learning Dashboard
-✅ Real-time Progress Tracking
-✅ Live & Recorded Sessions
-✅ Peer Collaboration Tools
-✅ Digital Certificates
-✅ Mobile Learning Access
-✅ Personalized Learning Paths
-```
-
-### For Teachers 👨‍🏫
-
-```
-✅ Course Creation & Management
-✅ Student Analytics Dashboard
-✅ Live Streaming Capabilities
-✅ Assignment & Grading System
-✅ Communication Tools
-✅ Resource Library
-✅ Performance Insights
-✅ Automated Notifications
 ```
 
 ### For Administrators 🎯
