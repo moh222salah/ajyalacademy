@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ajyal Academy - Elite Educational Platform for Future Generations">
+    <meta name="keywords" content="education, academy, learning, courses, students, teachers">
+    <meta name="author" content="Mohamed Salah">
+    <title>Ajyal Academy | Elite Educational Excellence</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===================================
+           GLOBAL RESET & VARIABLES
+        =================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Primary Colors */
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            
+            /* Glassmorphism Colors */
+            --glass-white: rgba(255, 255, 255, 0.1);
+            --glass-white-hover: rgba(255, 255, 255, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            
+            /* Text Colors */
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            
+            /* Background */
+            --bg-primary: #0a0e27;
+            --bg-secondary: #1a1f3a;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 15px 60px rgba(0, 0, 0, 0.3);
+            --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.4);
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-base: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Z-index */
+            --z-particles: -1;
+            --z-content: 1;
+            --z-header: 100;
+            --z-modal: 1000;
+        }
+
+        /* Arabic Font Support */
+        [dir="rtl"] {
+            font-family: 'Cairo', 'Poppins', sans-serif;
+        }
+
+        [dir="ltr"] {
+            font-family: 'Poppins', 'Cairo', sans-serif;
+        }
+
+        /* ===================================
+           ANIMATED BACKGROUND
+        =================================== */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: var(--z-particles);
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #667eea, transparent);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #764ba2, transparent);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #f093fb, transparent);
+            top: 50%;
+            left: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, 50px) scale(1.1);
+            }
+            50% {
+                transform: translate(-50px, 100px) scale(0.9);
+            }
+            75% {
+                transform: translate(100px, -50px) scale(1.05);
+            }
+        }
+
+        /* Particle System */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particle-float 15s infinite linear;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* ===================================
+           GLASS COMPONENTS
+        =================================== */
+        .glass {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-md);
+        }
+
+        .glass-hover {
+            transition: all var(--transition-base);
+        }
+
+        .glass-hover:hover {
+            background: var(--glass-white-hover);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ===================================
+           HEADER & NAVIGATION
+        =================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: var(--z-header);
+            padding: 1rem 0;
+            transition: all var(--transition-base);
+        }
+
+        header.scrolled {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all var(--transition-base);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: width var(--transition-base);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .lang-switch {
+            background: var(--glass-white);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            color: var(--text-primary);
+            font-weight: 600;
+            transition: all var(--transition-base);
+        }
+
+        .lang-switch:hover {
+            background: var(--glass-white-hover);
+            transform: scale(1.05);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all var(--transition-base);
+        }
+
+        /* ===================================
+           HERO SECTION
+        =================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-lg) var(--spacing-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+            z-index: var(--z-content);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 50%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 60px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: var(--glass-white);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--glass-border);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--glass-white-hover);
+            transform: translateY(-3px);
+        }
+
+        /* ===================================
+           STATS SECTION
+        =================================== */
+        .stats {
+            padding: var(--spacing-xl) var(--spacing-md);
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-base);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-sm);
+            filter: drop-shadow(0 0 20px currentColor);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* ===================================
+           TIMELINE SECTION
+        =================================== */
+        .timeline-section {
+            padding: var(--spacing-xl) var(--spacing-md);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: var(--spacing-lg);
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 50px 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:first-child {
+            order: 3;
+        }
+
+        .timeline-content {
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-base);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .timeline-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-marker {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-glow);
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-marker::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: inherit;
+            animation: pulse 2s infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ===================================
+           FEATURES SECTION
+        =================================== */
+        .features {
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .feature-card {
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-base);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity var(--transition-base);
+            z-index: -1;
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-md);
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ===================================
+           TECH STACK SECTION
+        =================================== */
+        .tech-stack {
+            padding: var(--spacing-xl) var(--spacing-md);
+            position: relative;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .tech-item {
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .tech-logo {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-sm);
+            filter: grayscale(50%);
+            transition: filter var(--transition-base);
+        }
+
+        .tech-item:hover .tech-logo {
+            filter: grayscale(0%);
+        }
+
+        .tech-name {
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: color var(--transition-base);
+        }
+
+        .tech-item:hover .tech-name {
+            color: var(--text-primary);
+        }
+
+        /* ===================================
+           CTA SECTION
+        =================================== */
+        .cta {
+            padding: var(--spacing-xl) var(--spacing-md);
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-description {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ===================================
+           FOOTER
+        =================================== */
+        footer {
+            padding: var(--spacing-xl) var(--spacing-md) var(--spacing-md);
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-md);
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--glass-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+            border: 1px solid var(--glass-border);
+        }
+
+        .social-link:hover {
+            background: var(--primary-gradient);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ===================================
+           MODAL SYSTEM
+        =================================== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: var(--z-modal);
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            max-width: 1200px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 2px solid var(--glass-border);
+            box-shadow: var(--shadow-lg);
+            animation: slideInUp 0.4s ease;
+        }
+
+        .modal-header {
+            padding: var(--spacing-lg);
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 0, 0, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: var(--spacing-lg);
+        }
+
+        /* ===================================
+           ANIMATIONS
+        =================================== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===================================
+           SCROLL ANIMATIONS
+        =================================== */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===================================
+           RESPONSIVE DESIGN
+        =================================== */
+        @media (max-width: 968px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                background: rgba(10, 14, 39, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: var(--spacing-lg);
+                transition: left var(--transition-base);
+                border-top: 1px solid var(--glass-border);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .mobile-menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .mobile-menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-sm);
+            }
+
+            .timeline-item:nth-child(even) .timeline-content:first-child {
+                order: initial;
+            }
+
+            .timeline-marker {
+                margin: 0 auto;
+            }
+
+            .timeline-line {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --spacing-md: 1.5rem;
+                --spacing-lg: 3rem;
+                --spacing-xl: 4rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+
+        /* ===================================
+           UTILITY CLASSES
+        =================================== */
+        .text-gradient {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        /* ===================================
+           LOADING ANIMATION
+        =================================== */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--glass-white);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection */
+        ::selection {
+            background: rgba(102, 126, 234, 0.3);
+            color: white;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+    </style>
+</head>
+<body dir="ltr">
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="logo" onclick="scrollToTop()">Ajyal Academy</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                <li><a href="#about" class="nav-link" data-en="About" data-ar="عن المنصة">About</a></li>
+                <li><a href="#features" class="nav-link" data-en="Features" data-ar="المميزات">Features</a></li>
+                <li><a href="#timeline" class="nav-link" data-en="Timeline" data-ar="خطة العمل">Timeline</a></li>
+                <li><a href="#tech" class="nav-link" data-en="Tech Stack" data-ar="التقنيات">Tech Stack</a></li>
+                <li><a href="#contact" class="nav-link" data-en="Contact" data-ar="تواصل">Contact</a></li>
+                <li><button class="lang-switch" onclick="toggleLanguage()">العربية</button></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title" data-en="Empowering Education for Future Generations" data-ar="تمكين التعليم للأجيال القادمة">
+                Empowering Education for Future Generations
+            </h1>
+            <p class="hero-subtitle" data-en="A comprehensive platform connecting students, teachers, and administrators in a seamless educational ecosystem" data-ar="منصة شاملة تربط الطلاب والمعلمين والإداريين في نظام تعليمي متكامل">
+                A comprehensive platform connecting students, teachers, and administrators in a seamless educational ecosystem
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="openModal('courses')">
+                    <span data-en="Explore Courses" data-ar="استكشف الدورات">Explore Courses</span>
+                    <span>→</span>
+                </button>
+                <button class="btn btn-secondary" onclick="openModal('register')">
+                    <span data-en="Get Started" data-ar="ابدأ الآن">Get Started</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats scroll-reveal">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card glass glass-hover">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-label" data-en="Active Students" data-ar="طالب نشط">Active Students</div>
+                </div>
+                <div class="stat-card glass glass-hover">
+                    <div class="stat-icon">👨‍🏫</div>
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-label" data-en="Expert Teachers" data-ar="معلم خبير">Expert Teachers</div>
+                </div>
+                <div class="stat-card glass glass-hover">
+                    <div class="stat-icon">🎓</div>
+                    <div class="stat-number" data-count="100">0</div>
+                    <div class="stat-label" data-en="Online Courses" data-ar="دورة تعليمية">Online Courses</div>
+                </div>
+                <div class="stat-card glass glass-hover">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label" data-en="Average Rating" data-ar="متوسط التقييم">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section" id="timeline">
+        <div class="container">
+            <h2 class="section-title" data-en="Our Workflow" data-ar="سير العمل">Our Workflow</h2>
+            <p class="section-subtitle" data-en="A streamlined four-phase approach to educational excellence" data-ar="نهج من أربع مراحل للتميز التعليمي">
+                A streamlined four-phase approach to educational excellence
+            </p>
+            
+            <div class="timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content glass scroll-reveal">
+                        <h3 class="timeline-title" data-en="Phase 1: Registration & Onboarding" data-ar="المرحلة 1: التسجيل والانضمام">Phase 1: Registration & Onboarding</h3>
+                        <p class="timeline-description" data-en="Students and teachers register through our intuitive platform. Profile creation, document verification, and initial assessment to match students with appropriate courses and educators." data-ar="يسجل الطلاب والمعلمون من خلال منصتنا البديهية. إنشاء الملف الشخصي والتحقق من المستندات والتقييم الأولي لمطابقة الطلاب مع الدورات والمعلمين المناسبين.">
+                            Students and teachers register through our intuitive platform. Profile creation, document verification, and initial assessment to match students with appropriate courses and educators.
+                        </p>
+                    </div>
+                    <div class="timeline-marker">1</div>
+                    <div></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div></div>
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content glass scroll-reveal">
+                        <h3 class="timeline-title" data-en="Phase 2: Course Selection & Enrollment" data-ar="المرحلة 2: اختيار الدورات والتسجيل">Phase 2: Course Selection & Enrollment</h3>
+                        <p class="timeline-description" data-en="Browse our extensive course catalog. Smart recommendations based on interests and skill level. Flexible scheduling and personalized learning paths." data-ar="تصفح كتالوج الدورات الشامل. توصيات ذكية بناءً على الاهتمامات ومستوى المهارة. جدولة مرنة ومسارات تعلم مخصصة.">
+                            Browse our extensive course catalog. Smart recommendations based on interests and skill level. Flexible scheduling and personalized learning paths.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content glass scroll-reveal">
+                        <h3 class="timeline-title" data-en="Phase 3: Interactive Learning" data-ar="المرحلة 3: التعلم التفاعلي">Phase 3: Interactive Learning</h3>
+                        <p class="timeline-description" data-en="Engage with live sessions, recorded lectures, and interactive materials. Real-time collaboration with peers and instructors. Regular assessments and instant feedback." data-ar="تفاعل مع الجلسات المباشرة والمحاضرات المسجلة والمواد التفاعلية. التعاون في الوقت الفعلي مع الأقران والمدربين. تقييمات منتظمة وملاحظات فورية.">
+                            Engage with live sessions, recorded lectures, and interactive materials. Real-time collaboration with peers and instructors. Regular assessments and instant feedback.
+                        </p>
+                    </div>
+                    <div class="timeline-marker">3</div>
+                    <div></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div></div>
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content glass scroll-reveal">
+                        <h3 class="timeline-title" data-en="Phase 4: Certification & Growth" data-ar="المرحلة 4: الشهادات والنمو">Phase 4: Certification & Growth</h3>
+                        <p class="timeline-description" data-en="Complete courses and earn recognized certifications. Track progress through comprehensive dashboards. Continue learning with advanced courses and specializations." data-ar="أكمل الدورات واحصل على شهادات معترف بها. تتبع التقدم من خلال لوحات المعلومات الشاملة. استمر في التعلم مع الدورات المتقدمة والتخصصات.">
+                            Complete courses and earn recognized certifications. Track progress through comprehensive dashboards. Continue learning with advanced courses and specializations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title" data-en="Platform Features" data-ar="مميزات المنصة">Platform Features</h2>
+            <p class="section-subtitle" data-en="Everything you need for a complete educational experience" data-ar="كل ما تحتاجه لتجربة تعليمية كاملة">
+                Everything you need for a complete educational experience
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card glass glass-hover scroll-reveal">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title" data-en="Smart Course Matching" data-ar="مطابقة ذكية للدورات">Smart Course Matching</h3>
+                    <p class="feature-description" data-en="AI-powered recommendations that match students with courses based on their interests, skill level, and learning goals." data-ar="توصيات مدعومة بالذكاء الاصطناعي تطابق الطلاب مع الدورات بناءً على اهتماماتهم ومستوى مهاراتهم وأهداف التعلم.">
+                        AI-powered recommendations that match students with courses based on their interests, skill level, and learning goals.
+                    </p>
+                </div>
+
+                <div class="feature-card glass glass-hover scroll-reveal">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title" data-en="Advanced Analytics" data-ar="تحليلات متقدمة">Advanced Analytics</h3>
+                    <p class="feature-description" data-en="Comprehensive dashboards for students, teachers, and administrators to track progress, performance, and engagement metrics." data-ar="لوحات معلومات شاملة للطلاب والمعلمين والإداريين لتتبع التقدم والأداء ومقاييس التفاعل.">
+                        Comprehensive dashboards for students, teachers, and administrators to track progress, performance, and engagement metrics.
+                    </p>
+                </div>
+
+                <div class="feature-card glass glass-hover scroll-reveal">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title" data-en="Real-time Communication" data-ar="تواصل فوري">Real-time Communication</h3>
+                    <p class="feature-description" data-en="Instant messaging, video conferencing, and collaborative tools to facilitate seamless interaction between all platform users." data-ar="رسائل فورية ومؤتمرات فيديو وأدوات تعاونية لتسهيل التفاعل السلس بين جميع مستخدمي المنصة.">
+                        Instant messaging, video conferencing, and collaborative tools to facilitate seamless interaction between all platform users.
+                    </p>
+                </div>
+
+                <div class="feature-card glass glass-hover scroll-reveal">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title" data-en="Secure & Private" data-ar="آمن وخاص">Secure & Private</h3>
+                    <p class="feature-description" data-en="Enterprise-grade security with encrypted data transmission, secure authentication, and privacy-first architecture." data-ar="أمان على مستوى المؤسسات مع نقل البيانات المشفرة والمصادقة الآمنة وبنية تعطي الأولوية للخصوصية.">
+                        Enterprise-grade security with encrypted data transmission, secure authentication, and privacy-first architecture.
+                    </p>
+                </div>
+
+                <div class="feature-card glass glass-hover scroll-reveal">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title" data-en="Mobile Responsive" data-ar="متوافق مع الموبايل">Mobile Responsive</h3>
+                    <p class="feature-description" data-en="Fully responsive design that works seamlessly across all devices - desktop, tablet, and mobile." data-ar="تصميم متجاوب بالكامل يعمل بسلاسة عبر جميع الأجهزة - سطح المكتب والأجهزة اللوحية والهواتف المحمولة.">
+                        Fully responsive design that works seamlessly across all devices - desktop, tablet, and mobile.
+                    </p>
+                </div>
+
+                <div class="feature-card glass glass-hover scroll-reveal">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title" data-en="High Performance" data-ar="أداء عالي">High Performance</h3>
+                    <p class="feature-description" data-en="Optimized code and infrastructure for lightning-fast loading times and smooth user experience." data-ar="كود وبنية تحتية محسّنة لأوقات تحميل فائقة السرعة وتجربة مستخدم سلسة.">
+                        Optimized code and infrastructure for lightning-fast loading times and smooth user experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack" id="tech">
+        <div class="container">
+            <h2 class="section-title" data-en="Technology Stack" data-ar="التقنيات المستخدمة">Technology Stack</h2>
+            <p class="section-subtitle" data-en="Built with cutting-edge technologies for optimal performance" data-ar="مبني بأحدث التقنيات للأداء الأمثل">
+                Built with cutting-edge technologies for optimal performance
+            </p>
+            
+            <div class="tech-grid">
+                <div class="tech-item glass glass-hover scroll-reveal">
+                    <div class="tech-logo">🐘</div>
+                    <div class="tech-name">PHP</div>
+                </div>
+                <div class="tech-item glass glass-hover scroll-reveal">
+                    <div class="tech-logo">🎨</div>
+                    <div class="tech-name">HTML5</div>
+                </div>
+                <div class="tech-item glass glass-hover scroll-reveal">
+                    <div class="tech-logo">💅</div>
+                    <div class="tech-name">CSS3</div>
+                </div>
+                <div class="tech-item glass glass-hover scroll-reveal">
+                    <div class="tech-logo">⚡</div>
+                    <div class="tech-name">JavaScript</div>
+                </div>
+                <div class="tech-item glass glass-hover scroll-reveal">
+                    <div class="tech-logo">🗄️</div>
+                    <div class="tech-name">MySQL</div>
+                </div>
+                <div class="tech-item glass glass-hover scroll-reveal">
+                    <div class="tech-logo">🔐</div>
+                    <div class="tech-name">Security</div>
+                </div>
+                <div class="tech-item glass glass-hover scroll-reveal">
+                    <div class="tech-logo">🌐</div>
+                    <div class="tech-name">REST API</div>
+                </div>
+                <div class="tech-item glass glass-hover scroll-reveal">
+                    <div class="tech-logo">📊</div>
+                    <div class="tech-name">Analytics</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <div class="cta-card scroll-reveal">
+                <h2 class="cta-title" data-en="Ready to Transform Education?" data-ar="جاهز لتحويل التعليم؟">Ready to Transform Education?</h2>
+                <p class="cta-description" data-en="Join thousands of students and educators who are already experiencing the future of learning" data-ar="انضم إلى آلاف الطلاب والمعلمين الذين يختبرون بالفعل مستقبل التعلم">
+                    Join thousands of students and educators who are already experiencing the future of learning
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://moh222salah.github.io/cv" target="_blank" class="btn btn-primary">
+                        <span data-en="View Portfolio" data-ar="عرض الأعمال">View Portfolio</span>
+                        <span>🎯</span>
+                    </a>
+                    <a href="https://wa.me/201113903070" target="_blank" class="btn btn-secondary">
+                        <span data-en="WhatsApp Contact" data-ar="تواصل واتساب">WhatsApp Contact</span>
+                        <span>📲</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 data-en="Ajyal Academy" data-ar="أكاديمية أجيال">Ajyal Academy</h3>
+                <p data-en="Empowering education for future generations through innovative technology and expert instruction." data-ar="تمكين التعليم للأجيال القادمة من خلال التكنولوجيا المبتكرة والتعليم الخبير.">
+                    Empowering education for future generations through innovative technology and expert instruction.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">📸</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="https://wa.me/201113903070" target="_blank" class="social-link">💬</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                    <li><a href="#features" data-en="Features" data-ar="المميزات">Features</a></li>
+                    <li><a href="#timeline" data-en="Timeline" data-ar="خطة العمل">Timeline</a></li>
+                    <li><a href="#tech" data-en="Technology" data-ar="التقنيات">Technology</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-en="Resources" data-ar="الموارد">Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="openModal('courses')" data-en="Courses" data-ar="الدورات">Courses</a></li>
+                    <li><a href="#" onclick="openModal('register')" data-en="Register" data-ar="التسجيل">Register</a></li>
+                    <li><a href="#" onclick="openModal('teachers')" data-en="Teachers" data-ar="المعلمين">Teachers</a></li>
+                    <li><a href="#" onclick="openModal('admin')" data-en="Admin Panel" data-ar="لوحة الإدارة">Admin Panel</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 data-en="Contact Info" data-ar="معلومات التواصل">Contact Info</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@ajyalacademy.com">📧 info@ajyalacademy.com</a></li>
+                    <li><a href="tel:+201113903070">📞 +20 111 390 3070</a></li>
+                    <li><a href="https://moh222salah.github.io/cv" target="_blank" data-en="Developer Portfolio" data-ar="معرض أعمال المطور">Developer Portfolio</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2024 Ajyal Academy. <span data-en="All rights reserved." data-ar="جميع الحقوق محفوظة.">All rights reserved.</span> | <span data-en="Developed by" data-ar="طورت بواسطة">Developed by</span> <a href="https://moh222salah.github.io/cv" target="_blank" style="color: #667eea;">Mohamed Salah</a></p>
+        </div>
+    </footer>
+
+    <!-- Modal Templates -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Modal Title</h2>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic content loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===================================
+        // GLOBAL VARIABLES
+        // ===================================
+        let currentLang = 'en';
+        const translations = {
+            en: 'English',
+            ar: 'العربية'
+        };
+
+        // ===================================
+        // PAGE INITIALIZATION
+        // ===================================
+        document.addEventListener('DOMContentLoaded', function() {
+            initParticles();
+            initScrollAnimations();
+            initHeaderScroll();
+            initMobileMenu();
+            initCounters();
+            hideLoader();
+            updateLanguage();
+        });
+
+        // ===================================
+        // PARTICLE SYSTEM
+        // ===================================
+        function initParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // ===================================
+        // SCROLL ANIMATIONS
+        // ===================================
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.scroll-reveal').forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // ===================================
+        // HEADER SCROLL EFFECT
+        // ===================================
+        function initHeaderScroll() {
+            const header = document.getElementById('header');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // ===================================
+        // MOBILE MENU
+        // ===================================
+        function initMobileMenu() {
+            const toggle = document.getElementById('mobileMenuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const links = navLinks.querySelectorAll('a');
+
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                document.body.classList.toggle('no-scroll');
+            });
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    toggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.classList.remove('no-scroll');
+                });
+            });
+        }
+
+        // ===================================
+        // COUNTER ANIMATIONS
+        // ===================================
+        function initCounters() {
+            const counters = document.querySelectorAll('.stat-number[data-count]');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-count'));
+                        animateCounter(counter, target);
+                        observer.unobserve(counter);
+                    }
+                });
+            });
+
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 30);
+        }
+
+        // ===================================
+        // LANGUAGE TOGGLE
+        // ===================================
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            
+            document.documentElement.setAttribute('dir', dir);
+            document.documentElement.setAttribute('lang', currentLang);
+            
+            updateLanguage();
+            
+            // Update button text
+            const langBtn = document.querySelector('.lang-switch');
+            langBtn.textContent = currentLang === 'en' ? 'العربية' : 'English';
+        }
+
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-en][data-ar]');
+            
+            elements.forEach(element => {
+                const text = element.getAttribute(`data-${currentLang}`);
+                if (text) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = text;
+                    } else {
+                        element.textContent = text;
+                    }
+                }
+            });
+        }
+
+        // ===================================
+        // MODAL SYSTEM
+        // ===================================
+        function openModal(type) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            
+            const content = getModalContent(type);
+            modalTitle.textContent = content.title;
+            modalBody.innerHTML = content.body;
+            
+            modal.classList.add('active');
+            document.body.classList.add('no-scroll');
+            
+            updateLanguage();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
+
+        function getModalContent(type) {
+            const contents = {
+                courses: {
+                    title: currentLang === 'en' ? 'Available Courses' : 'الدورات المتاحة',
+                    body: `
+                        <div class="features-grid">
+                            <div class="feature-card glass">
+                                <div class="feature-icon">💻</div>
+                                <h3 class="feature-title" data-en="Web Development" data-ar="تطوير الويب">Web Development</h3>
+                                <p class="feature-description" data-en="Master HTML, CSS, JavaScript, and modern frameworks" data-ar="إتقان HTML و CSS و JavaScript والأطر الحديثة">Master HTML, CSS, JavaScript, and modern frameworks</p>
+                                <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;">
+                                    <span data-en="Enroll Now" data-ar="سجل الآن">Enroll Now</span>
+                                </button>
+                            </div>
+                            <div class="feature-card glass">
+                                <div class="feature-icon">🎨</div>
+                                <h3 class="feature-title" data-en="UI/UX Design" data-ar="تصميم واجهات المستخدم">UI/UX Design</h3>
+                                <p class="feature-description" data-en="Learn to create beautiful and functional user interfaces" data-ar="تعلم إنشاء واجهات مستخدم جميلة وعملية">Learn to create beautiful and functional user interfaces</p>
+                                <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;">
+                                    <span data-en="Enroll Now" data-ar="سجل الآن">Enroll Now</span>
+                                </button>
+                            </div>
+                            <div class="feature-card glass">
+                                <div class="feature-icon">📊</div>
+                                <h3 class="feature-title" data-en="Data Science" data-ar="علم البيانات">Data Science</h3>
+                                <p class="feature-description" data-en="Analyze data and build predictive models" data-ar="تحليل البيانات وبناء النماذج التنبؤية">Analyze data and build predictive models</p>
+                                <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;">
+                                    <span data-en="Enroll Now" data-ar="سجل الآن">Enroll Now</span>
+                                </button>
+                            </div>
+                            <div class="feature-card glass">
+                                <div class="feature-icon">📱</div>
+                                <h3 class="feature-title" data-en="Mobile Development" data-ar="تطوير التطبيقات">Mobile Development</h3>
+                                <p class="feature-description" data-en="Build native and cross-platform mobile applications" data-ar="بناء تطبيقات الهاتف المحمول الأصلية ومتعددة المنصات">Build native and cross-platform mobile applications</p>
+                                <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;">
+                                    <span data-en="Enroll Now" data-ar="سجل الآن">Enroll Now</span>
+                                </button>
+                            </div>
+                        </div>
+                    `
+                },
+                register: {
+                    title: currentLang === 'en' ? 'Register Now' : 'سجل الآن',
+                    body: `
+                        <div class="glass" style="padding: 2rem; border-radius: 16px;">
+                            <form style="display: flex; flex-direction: column; gap: 1.5rem;">
+                                <div>
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-en="Full Name" data-ar="الاسم الكامل">Full Name</label>
+                                    <input type="text" placeholder="John Doe" style="width: 100%; padding: 1rem; border-radius: 12px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 1rem;">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-en="Email Address" data-ar="البريد الإلكتروني">Email Address</label>
+                                    <input type="email" placeholder="john@example.com" style="width: 100%; padding: 1rem; border-radius: 12px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 1rem;">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-en="Phone Number" data-ar="رقم الهاتف">Phone Number</label>
+                                    <input type="tel" placeholder="+20 111 390 3070" style="width: 100%; padding: 1rem; border-radius: 12px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 1rem;">
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;" data-en="Role" data-ar="الدور">Role</label>
+                                    <select style="width: 100%; padding: 1rem; border-radius: 12px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 1rem;">
+                                        <option value="student" data-en="Student" data-ar="طالب">Student</option>
+                                        <option value="teacher" data-en="Teacher" data-ar="معلم">Teacher</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                                    <span data-en="Complete Registration" data-ar="إكمال التسجيل">Complete Registration</span>
+                                    <span>→</span>
+                                </button>
+                            </form>
+                        </div>
+                    `
+                },
+                teachers: {
+                    title: currentLang === 'en' ? 'Our Expert Teachers' : 'معلمينا الخبراء',
+                    body: `
+                        <div class="features-grid">
+                            <div class="feature-card glass">
+                                <div class="feature-icon">👨‍💻</div>
+                                <h3 class="feature-title">Dr. Ahmed Hassan</h3>
+                                <p class="feature-description" data-en="Computer Science PhD, 15+ years of teaching experience" data-ar="دكتوراه في علوم الحاسوب، أكثر من 15 عامًا من الخبرة التدريسية">Computer Science PhD, 15+ years of teaching experience</p>
+                                <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                    <span style="background: rgba(102,126,234,0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">Web Development</span>
+                                    <span style="background: rgba(102,126,234,0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">JavaScript</span>
+                                </div>
+                            </div>
+                            <div class="feature-card glass">
+                                <div class="feature-icon">👩‍🎨</div>
+                                <h3 class="feature-title">Sarah Mohamed</h3>
+                                <p class="feature-description" data-en="Senior UI/UX Designer, Former Google Designer" data-ar="مصممة واجهات مستخدم رئيسية، مصممة سابقة في Google">Senior UI/UX Designer, Former Google Designer</p>
+                                <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                    <span style="background: rgba(102,126,234,0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">UI/UX Design</span>
+                                    <span style="background: rgba(102,126,234,0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">Figma</span>
+                                </div>
+                            </div>
+                            <div class="feature-card glass">
+                                <div class="feature-icon">👨‍🔬</div>
+                                <h3 class="feature-title">Dr. Khaled Ali</h3>
+                                <p class="feature-description" data-en="Data Scientist, AI Research Specialist" data-ar="عالم بيانات، متخصص في أبحاث الذكاء الاصطناعي">Data Scientist, AI Research Specialist</p>
+                                <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                    <span style="background: rgba(102,126,234,0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">Data Science</span>
+                                    <span style="background: rgba(102,126,234,0.2); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">Machine Learning</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                admin: {
+                    title: currentLang === 'en' ? 'Admin Dashboard' : 'لوحة الإدارة',
+                    body: `
+                        <div class="stats-grid">
+                            <div class="stat-card glass">
+                                <div class="stat-icon">👥</div>
+                                <div class="stat-number">1,234</div>
+                                <div class="stat-label" data-en="Total Users" data-ar="إجمالي المستخدمين">Total Users</div>
+                            </div>
+                            <div class="stat-card glass">
+                                <div class="stat-icon">📚</div>
+                                <div class="stat-number">89</div>
+                                <div class="stat-label" data-en="Active Courses" data-ar="الدورات النشطة">Active Courses</div>
+                            </div>
+                            <div class="stat-card glass">
+                                <div class="stat-icon">💰</div>
+                                <div class="stat-number">$45K</div>
+                                <div class="stat-label" data-en="Monthly Revenue" data-ar="الإيرادات الشهرية">Monthly Revenue</div>
+                            </div>
+                            <div class="stat-card glass">
+                                <div class="stat-icon">📈</div>
+                                <div class="stat-number">+28%</div>
+                                <div class="stat-label" data-en="Growth Rate" data-ar="معدل النمو">Growth Rate</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary" style="flex: 1;">
+                                <span data-en="Manage Users" data-ar="إدارة المستخدمين">Manage Users</span>
+                            </button>
+                            <button class="btn btn-secondary" style="flex: 1;">
+                                <span data-en="View Reports" data-ar="عرض التقارير">View Reports</span>
+                            </button>
+                            <button class="btn btn-secondary" style="flex: 1;">
+                                <span data-en="Settings" data-ar="الإعدادات">Settings</span>
+                            </button>
+                        </div>
+                    `
+                }
+            };
+            
+            return contents[type] || contents.courses;
+        }
+
+        // Close modal on outside click
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // ===================================
+        // UTILITY FUNCTIONS
+        // ===================================
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function hideLoader() {
+            setTimeout(() => {
+                document.querySelector('.page-loader').classList.add('hidden');
+            }, 1000);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
